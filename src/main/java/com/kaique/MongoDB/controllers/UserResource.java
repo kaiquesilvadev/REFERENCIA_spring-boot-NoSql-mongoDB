@@ -37,29 +37,4 @@ public class UserResource {
 		UserDTO obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
-	@PostMapping
- 	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO obj) {
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);
-	}
-
-	@DeleteMapping(value="/{id}")
- 	public ResponseEntity<Void> delete(@PathVariable String id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
-	}
-
-	@PutMapping(value="/{id}")
- 	public ResponseEntity<UserDTO> update(@PathVariable String id, @RequestBody UserDTO obj) {
-		obj = service.update(id, obj);
-		return ResponseEntity.ok().body(obj);
-	}
-	
-	@GetMapping(value="/{id}/posts")
- 	public ResponseEntity<List<PostDTO>> getUserPosts(@PathVariable String id) {
-		List<PostDTO> list = service.getUserPosts(id);
-		return ResponseEntity.ok().body(list);
-	}
 }
