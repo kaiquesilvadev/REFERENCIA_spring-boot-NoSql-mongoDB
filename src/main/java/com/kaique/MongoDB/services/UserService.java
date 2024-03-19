@@ -41,6 +41,11 @@ public class UserService {
 		return new UserDTO(entity);
 	}
 
+	public void delete(String id) {
+		getEntityById(id);
+		repository.deleteById(id);
+	}
+
 	public UserDTO update(String id, UserDTO dto) {
 		User entity = getEntityById(id);
 		copyDtoToEntity(dto, entity);
