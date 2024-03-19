@@ -1,19 +1,15 @@
-package com.kaique.MongoDB.models.entities;
+package com.kaique.MongoDB.models.dto;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.kaique.MongoDB.models.embedded.Author;
 import com.kaique.MongoDB.models.embedded.Comment;
+import com.kaique.MongoDB.models.entities.Post;
 
-@Document
-public class Post {
-
-	@Id
+public class PostDTO {
+	
 	private String id;
 	private Instant moment;
 	private String title;
@@ -21,19 +17,28 @@ public class Post {
 	private Author author;
 	
 	private List<Comment> comments = new ArrayList<>();
-	
-	public Post() {
+
+	public PostDTO() {
 	}
 
-	public Post(String id, Instant moment, String title, String body, Author author) {
-		super();
+	public PostDTO(String id, Instant moment, String title, String body, Author author, List<Comment> comments) {
 		this.id = id;
 		this.moment = moment;
 		this.title = title;
 		this.body = body;
 		this.author = author;
+		this.comments = comments;
 	}
 
+	public PostDTO(Post entity) {
+		this.id = entity.getId();
+		this.moment = entity.getMoment();
+		this.title = entity.getTitle();
+		this.body = entity.getBody();
+		this.author = entity.getAuthor();
+		this.comments.addAll(entity.getComments());
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -80,30 +85,5 @@ public class Post {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Post other = (Post) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
 	}
 }
