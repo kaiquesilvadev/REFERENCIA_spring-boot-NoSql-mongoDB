@@ -34,6 +34,11 @@ public class UserService {
 		return result.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado"));
 	}
 	
+	public List<PostDTO> getUserPosts(String id) {
+		User user = getEntityById(id);
+		return user.getPosts().stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
+	}
+	
 	public UserDTO insert(UserDTO dto) {
 		User entity = new User();
 		copyDtoToEntity(dto, entity);
