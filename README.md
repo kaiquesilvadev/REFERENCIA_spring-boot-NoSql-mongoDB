@@ -1,6 +1,6 @@
 # Workshop Spring Boot MongoDB DevSuperior
 
-Este é o material de apoio que o DevSuperior disponibiliza para os alunos como referência para o projeto.
+Este é o material de apoio que a DevSuperior disponibiliza para os alunos como referência para o projeto.
 
 ### Modelo conceitual
 
