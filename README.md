@@ -6,6 +6,12 @@ Este é o material de apoio que o DevSuperior disponibiliza para os alunos como 
 
 https://docs.google.com/document/d/1CCWaBMSpMtQtJSLDAukO5GhBwZgm2MY3pify79Gl_MU/edit?usp=sharing
 
+### Pré-requisitos
+
+- Java Development Kit (JDK)
+- MongoDB em execução
+- IDE de sua escolha (recomendado: IntelliJ IDEA ou Spring Tool Suite)
+
 ### Container Docker do MongoDB para desenvolvimento
 
 ```
