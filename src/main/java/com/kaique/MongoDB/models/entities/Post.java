@@ -1,9 +1,14 @@
 package com.kaique.MongoDB.models.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.kaique.MongoDB.models.embedded.Author;
+import com.kaique.MongoDB.models.embedded.Comment;
 
 @Document
 public class Post {
@@ -13,15 +18,20 @@ public class Post {
 	private Instant moment;
 	private String title;
 	private String body;
-
+	private Author author;
+	
+	private List<Comment> comments = new ArrayList<>();
+	
 	public Post() {
 	}
 
-	public Post(String id, Instant moment, String title, String body) {
+	public Post(String id, Instant moment, String title, String body, Author author) {
+		super();
 		this.id = id;
 		this.moment = moment;
 		this.title = title;
 		this.body = body;
+		this.author = author;
 	}
 
 	public String getId() {
@@ -54,6 +64,22 @@ public class Post {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

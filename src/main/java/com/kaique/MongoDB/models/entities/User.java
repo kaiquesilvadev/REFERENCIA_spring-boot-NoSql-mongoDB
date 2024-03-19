@@ -1,17 +1,25 @@
 package com.kaique.MongoDB.models.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 //Esta anotação '@Document(collection="users")' define a associação entre uma classe Java e a coleção 'users' no MongoDB
 @Document
 public class User {
 
-	@Id
-	//Em MongoDB, o campo 'id' geralmente é representado como uma String, pois o MongoDB utiliza o formato BSON (Binary JSON)
+	@Id //Em MongoDB, o campo 'id' geralmente é representado como uma String, pois o MongoDB utiliza o formato BSON (Binary JSON)
 	private String id;
 	private String name;
 	private String email;
+	
+	//Esta anotação sugere que a recuperação da referida entidade será feita de forma preguiçosa quando necessária.
+	@DBRef(lazy = true)
+	private List<Post> posts = new ArrayList<>();
+	
 	public User() {
 	}
 
@@ -46,6 +54,14 @@ public class User {
 		this.email = email;
 	}
 
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,4 +86,4 @@ public class User {
 			return false;
 		return true;
 	}
-}
+}	
