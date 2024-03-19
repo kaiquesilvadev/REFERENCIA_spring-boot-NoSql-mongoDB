@@ -20,45 +20,6 @@ docker exec -it mongo1 bash
 
 (baixe o arquivo DSPosts.postman_collection.json que está aqui na pasta do projeto, e importe-o no seu Postman)
 
-Consulta detalhada
-
-```json
-{ 
-	$and: [ 
-		{ 
-			moment: {
-				$gte: ?1
-			} 
-		}, 
-		{ 	
-			moment: { 
-				$lte: ?2} 
-		} , 
-		{ 	
-			$or: [ 
-				{ 
-					'title': { 
-						$regex: ?0, 
-						$options: 'i' 
-					} 
-				}, 
-				{ 
-					'body': { 
-						$regex: ?0, 
-						$options: 'i' 
-					} 
-				}, 
-				{ 
-					'comments.text': { 
-						$regex: ?0, $options: 'i' 
-					} 
-				} 
-			] 
-		} 
-	] 
-}
-```
-
 ## Recursos adicionais
 
 ### Documentação MongoDB: query operators
