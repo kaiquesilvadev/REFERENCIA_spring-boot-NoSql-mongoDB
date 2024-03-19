@@ -37,4 +37,11 @@ public class UserResource {
 		UserDTO obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
+
+	@PostMapping
+ 	public ResponseEntity<UserDTO> insert(@RequestBody UserDTO obj) {
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(obj);
+	}
 }
